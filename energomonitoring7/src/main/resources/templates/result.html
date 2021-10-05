@@ -1,0 +1,274 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/result.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-main">
+    <div class="userInfoWrapper">
+        <div class="userInfo">
+            <nav class="navbar navbar-light">
+                <button aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler"
+                        data-target="#navbarToggleExternalContent" data-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <span class="currentMenuAction" th:text="'Результат №' + ${result.id}">Результат №123</span>
+                <span class="username"><i aria-hidden="true" class="fa fa-user"></i><span
+                        th:text="${name}"></span></span>
+            </nav>
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-light p-4">
+                    <div class="card-group">
+                        <div class="card" id="create-new-document">
+                            <img alt="..." class="card-img-top" th:src="@{/images/icons8-add-file-80.png}">
+                            <div class="card-body">
+                                <h6 class="card-title">Создать новый акт</h6>
+                            </div>
+                        </div>
+                        <div class="card" id="inspection-results">
+                            <img alt="..." class="card-img-top" th:src="@{/images/icons8-rules-40.png}">
+                            <div class="card-body">
+                                <h6 class="card-title">Результаты проверок</h6>
+                            </div>
+                        </div>
+                        <div class="card" onclick="document.logoutForm.submit()">
+                            <img alt="..." class="card-img-top" th:src="@{/images/icons8-exit-40.png}">
+                            <div class="card-body">
+                                <h6 class="card-title">Выйти</h6>
+                                <form method="post" name="logoutForm" th:action="@{/logout}" th:hidden="true">
+                                    <input hidden type="submit" value="Sign Out"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="logo"></div>
+
+
+    <div class="info">
+        <div style="display: flex; justify-content: space-evenly">
+            <div style="margin-top: 30px;">
+        <div>
+            <span class="label">Дата формирования: </span> <span th:text="${#calendars.format(result.otherInfo.date, 'dd.MM.yyyy HH:mm:ss')}"></span>
+        </div>
+        <div>
+            <span class="label">Абонент: </span> <span th:text="${result.clientInfo.getName()}"></span>
+        </div>
+        <div>
+            <span class="label">Адрес: </span> <span th:text="${result.clientInfo.getAddressUUTE()}"></span>
+        </div>
+                </div>
+            <div style="display: table-cell;">
+        <button class="vn-blue" onclick="downloadWord(this)" th:attr="data-id=${result.otherInfo.dataId}">Скачать акт в формате word</button>
+        </div>
+        </div>
+        <div class="data_filled_from_site">
+            <div>
+                <h3 class="part-title">Проверка данных предоставленных заказчиком</h3>
+                <div class="project-photo-container">
+                    <span class="label" style="position: absolute; left: 0; bottom: 0">Фото проекта: </span><img class="pop" th:src="${result.project.photoBase64}" id="projectPhoto">
+                </div>
+            </div>
+            <div>
+                <span class="label">Соответствие проекта нормативным требованиям: </span>
+                <span th:if="${result.project.isOk}">
+            <i class="fa fa-check"></i>
+        </span>
+                <span th:unless="${result.project.isOk}">
+            <i class="fa fa-times"></i>
+        </span>
+            </div>
+            <div>
+                <span class="label">Комментарий:</span> <span th:text="${result.project.comment}"></span>
+            </div>
+
+            <div class="general_inspection_info">
+                <h3 class="part-title">Проверка основных данных</h3>
+                <div>
+                    <span class="label">Соответствие освещенности:</span>
+                    <span th:if="${result.otherInfo.lightIsOk}">
+            <i class="fa fa-check"></i>
+        </span>
+                    <span th:unless="${result.otherInfo.lightIsOk}">
+            <i class="fa fa-times"></i>
+        </span>
+                </div>
+                <div>
+                    <span class="label">Соответствие СанПИН:</span>
+                    <span th:if="${result.otherInfo.sanPinIsOk}">
+            <i class="fas fa-check"></i>
+        </span>
+                    <span th:unless="${result.otherInfo.sanPinIsOk}">
+            <i class="fa fa-times"></i>
+                    </span>
+                </div>
+                <div>
+                    <span class="label">Комментарий:</span> <span
+                        th:text="${result.otherInfo.generalInspectionComment}"></span>
+                </div>
+            </div>
+            <h3 class="part-title">Приборы</h3>
+            <div class="device-inspection-info">
+                <h5>Тепловычислители</h5>
+                <div class="scrollable">
+                <div class="device-card-group">
+                    <div class="device-card" th:each="deviceTemperatureCounter : ${result.deviceTemperatureCounters}">
+                        <!--<div th:unless="deviceFlowTransducerStat.first" style="width: 20px"></div>-->
+                        <div class="device-card-field"><span class="label">Модель: </span><span th:text="${deviceTemperatureCounter.deviceName}"></span></div>
+                        <div class="device-card-field"><span class="label">Номер: </span><span th:text="${deviceTemperatureCounter.deviceNumber}"></span></div>
+                        <div class="device-card-field"><span class="label">Система измерения: </span><span th:text="${deviceTemperatureCounter.unitSystem}"></span></div>
+                        <div class="device-card-field"><span class="label">Модификация: </span><span th:text="${deviceTemperatureCounter.modification}"></span></div>
+                        <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${deviceTemperatureCounter.lastCheckDate}"></span></div>
+                        <div class="device-card-field"><span class="label">Межповерочный интервал: </span><span th:text="${deviceTemperatureCounter.interval}"></span></div>
+                        <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${deviceTemperatureCounter.comment}"></span></div>
+                    </div>
+                </div>
+                </div>
+                <h5>Преобразователи расхода</h5>
+                <div class="scrollable">
+                <div class="device-card-group">
+                    <div class="device-card" th:each="deviceFlowTransducer : ${result.deviceFlowTransducers}">
+                        <div class="device-card-field"><span class="label">Модель: </span><span th:text="${deviceFlowTransducer.deviceName}"></span></div>
+                        <div class="device-card-field"><span class="label">Номер: </span><span th:text="${deviceFlowTransducer.deviceNumber}"></span></div>
+                        <div class="device-card-field"><span class="label">Место установки: </span><span th:text="${deviceFlowTransducer.installationPlace}"></span></div>
+                        <div class="device-card-field"><span class="label">Производитель: </span><span th:text="${deviceFlowTransducer.manufacturer}"></span></div>
+                        <div class="device-card-field"><span class="label">Диаметр: </span><span th:text="${deviceFlowTransducer.diameter}"></span></div>
+                        <div class="device-card-field"><span class="label">Вес импульса: </span><span th:text="${deviceFlowTransducer.impulseWeight}"></span></div>
+                        <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${deviceFlowTransducer.lastCheckDate}"></span></div>
+                        <div class="device-card-field"><span class="label">Показания на момент допуска: </span><span th:text="${deviceFlowTransducer.values}"></span></div>
+                        <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${deviceFlowTransducer.comment}"></span></div>
+                    </div>
+                </div>
+                </div>
+                <h5>Преобразователи температуры</h5>
+                <div class="scrollable">
+                    <div class="device-card-group">
+                        <div class="device-card" th:each="device : ${result.deviceTemperatureTransducers}">
+                            <div class="device-card-field"><span class="label">Модель: </span><span th:text="${device.deviceName}"></span></div>
+                            <div class="device-card-field"><span class="label">Номер: </span><span th:text="${device.deviceNumber}"></span></div>
+                            <div class="device-card-field"><span class="label">Место установки: </span><span th:text="${device.installationPlace}"></span></div>
+                            <div class="device-card-field"><span class="label">Длина: </span><span th:text="${device.length}"></span></div>
+                            <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${device.lastCheckDate}"></span></div>
+                            <div class="device-card-field"><span class="label">Показания на момент допуска: </span><span th:text="${device.values}"></span></div>
+                            <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${device.comment}"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <h5>Преобразователи давления</h5>
+                <div class="scrollable">
+                    <div class="device-card-group">
+                        <div class="device-card" th:each="device : ${result.devicePressureTransducers}">
+                            <div class="device-card-field"><span class="label">Модель: </span><span th:text="${device.deviceName}"></span></div>
+                            <div class="device-card-field"><span class="label">Номер: </span><span th:text="${device.deviceNumber}"></span></div>
+                            <div class="device-card-field"><span class="label">Место установки: </span><span th:text="${device.installationPlace}"></span></div>
+                            <div class="device-card-field"><span class="label">Производитель: </span><span th:text="${device.manufacturer}"></span></div>
+                            <div class="device-card-field"><span class="label">Диапазон датчика: </span><span th:text="${device.sensorRange}"></span></div>
+                            <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${device.lastCheckDate}"></span></div>
+                            <div class="device-card-field"><span class="label">Показания на момент допуска: </span><span th:text="${device.values}"></span></div>
+                            <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${device.comment}"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <h5>Счетчики</h5>
+                <div class="scrollable">
+                    <div class="device-card-group">
+                        <div class="device-card" th:each="device : ${result.deviceCounters}">
+                            <div class="device-card-field"><span class="label">Модель: </span><span th:text="${device.deviceName}"></span></div>
+                            <div class="device-card-field"><span class="label">Номер: </span><span th:text="${device.deviceNumber}"></span></div>
+                            <div class="device-card-field"><span class="label">Диаметр: </span><span th:text="${device.diameter}"></span></div>
+                            <div class="device-card-field"><span class="label">Вес импульса: </span><span th:text="${device.impulseWeight}"></span></div>
+                            <div class="device-card-field"><span class="label">Qo Гкал: </span><span th:text="${device.parameters.get(0).getValue()}"></span></div>
+                            <div class="device-card-field"><span class="label">Q гвс: </span><span th:text="${device.parameters.get(1).getValue()}"></span></div>
+                            <div class="device-card-field"><span class="label">G1 т/час: </span><span th:text="${device.parameters.get(2).getValue()}"></span></div>
+                            <div class="device-card-field"><span class="label">G2 т/час: </span><span th:text="${device.parameters.get(3).getValue()}"></span></div>
+                            <div class="device-card-field"><span class="label">G3 т/час: </span><span th:text="${device.parameters.get(4).getValue()}"></span></div>
+                            <div class="device-card-field"><span class="label">T1 C: </span><span th:text="${device.parameters.get(5).getValue()}"></span></div>
+                            <div class="device-card-field"><span class="label">T2 C: </span><span th:text="${device.parameters.get(6).getValue()}"></span></div>
+                            <div class="device-card-field"><span class="label">P1: </span><span th:text="${device.parameters.get(7).getValue()}"></span></div>
+                            <div class="device-card-field"><span class="label">P2: </span><span th:text="${device.parameters.get(8).getValue()}"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <span class="label">Примечания к показаниям:</span> <span th:text="${result.otherInfo.counterCharacteristictsComment}"></span>
+            </div>
+
+            <h3 class="part-title">Проверка длин прямолинейных участков</h3>
+            <div class="scrollable">
+                <div class="device-card-group" th:each="lengthResult : ${result.flowTransducerCheckLengthResults}">
+                    <div class="device-card" >
+                        <div class="device-card-field"><span class="label">Длина до расходомера: </span><span th:text="${lengthResult.lengthBefore}"></span></div>
+                        <div class="device-card-field"><span class="label">Длина после расходомера: </span><span th:text="${lengthResult.lengthAfter}"></span></div>
+                        <span class="label">Фото: </span>
+                        <div class="scrollable">
+                        <div class="length-photos-group">
+                            <div class="length-photo-card" th:each="photoCard : ${lengthResult.photosBase64.split(';')}">
+                                <img class="photo-card" th:src="|data:image/png;base64,${photoCard}|"/>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="part-title">Фото объекта</h3>
+            <h5>Общий вид узла</h5>
+            <div class="scrollable">
+                <div class="length-photos-group">
+                    <div class="length-photo-card" th:each="photo : ${result.otherInfo.finalPhotosGeneral.split(';')}">
+                        <img class="photo-card" th:src="|data:image/png;base64,${photo}|"/>
+                    </div>
+                </div>
+            </div>
+            <h5>Приборный парк</h5>
+            <div class="scrollable">
+                <div class="length-photos-group">
+                    <div class="length-photo-card" th:each="photo : ${result.otherInfo.finalPhotosDevices.split(';')}">
+                        <img class="photo-card" th:src="|data:image/png;base64,${photo}|"/>
+                    </div>
+                </div>
+            </div>
+            <h5>Пломбы на приборах</h5>
+            <div class="scrollable">
+                <div class="length-photos-group">
+                    <div class="length-photo-card" th:each="photo : ${result.otherInfo.finalPhotosSeals.split(';')}">
+                        <img class="photo-card" th:src="|data:image/png;base64,${photo}|"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="" class="imagepreview" style="width: 100%;" >
+                </div>
+            </div>
+        </div>
+    </div>
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/result.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

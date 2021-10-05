@@ -1,0 +1,49 @@
+.navbar-toggler{
+	height: 50px;
+	flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 70px !important;  
+}
+
+.card-img-top{
+	width: 40px !important;
+	height: 40px;
+	margin-top: 17px;
+}
+
+.card{
+	align-items: center;
+}
+
+.card:hover{
+	cursor: pointer;
+	background: #f8faff;
+}
+
+.userInfo{
+    text-align: center;
+	font-size: 18px;
+	font-family: Rubik-Regular;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.userInfoWrapper{
+	background-color: #f7f7f7;
+}
+
+.fa-user{
+	font-size: 20px !important;
+	margin-right: 5px;
+}
+
+.card-title{
+	margin-bottom: 0px !important;
+}
+
+button{
+  outline: none !important;
+  box-shadow: none !important;
+}

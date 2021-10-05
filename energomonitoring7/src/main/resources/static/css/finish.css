@@ -1,0 +1,122 @@
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+@font-face {
+  font-family: Rubik-Regular;
+  src: url('../css/fonts/Rubik/Rubik-Regular.ttf');
+}
+
+@font-face {
+  font-family: Rubik-Medium;
+  src: url('../css/fonts/Rubik/Rubik-Medium.ttf');
+}
+
+@font-face {
+  font-family: Rubik-Bold;
+  src: url('../css/fonts/Rubik/Rubik-Bold.ttf');
+}
+
+@font-face {
+  font-family: Rubik-ExtraBold;
+  src: url('../css/fonts/Rubik/Rubik-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: Rubik-SemiBold;
+  src: url('../css/fonts/Rubik/Rubik-SemiBold.ttf');
+}
+
+*{
+	box-sizing: content-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: Rubik-Regular;
+	background: #ebeeef !important;
+	justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+}
+
+/*---------------------------------------------*/
+h1,h2,h3,h4,h5,h6 {
+	margin: 0px;
+}
+
+.container-main{
+	width: 730px;
+	/*height: 650px;*/
+	border-radius: 15px;
+	overflow: hidden;
+	flex-wrap: wrap;
+	background: #fff;
+}
+
+.input-title{
+	font-family: Rubik-Bold;
+	font-size: 23px;
+	text-transform: uppercase;
+	margin-bottom: 15px;
+    text-align: center;
+	margin-top: 100px;
+}
+
+button{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; 
+  margin-top: 15px;
+  margin-left: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 160px;
+  height: 50px;
+  background-color: #5f80aa;
+
+  font-family: Rubik-Regular;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.submit-button:hover{
+	background-color: #000;
+    cursor: pointer;
+}
+
+.submit-button{
+    margin-left: 260px;
+    margin-top: 150px;
+}
+
+.exit{
+    padding-left: 25px;
+}
+
+.logo{
+	width: 100%;
+    height: 120px;
+	background-image: url(../images/logo_energo.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.userInfo{
+    background-color: #f7f7f7;
+    text-align: center;
+}

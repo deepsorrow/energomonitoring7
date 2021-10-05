@@ -1,0 +1,306 @@
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+@font-face {
+  font-family: Rubik-Regular;
+  src: url('../css/fonts/Rubik/Rubik-Regular.ttf');
+}
+
+@font-face {
+  font-family: Rubik-Medium;
+  src: url('../css/fonts/Rubik/Rubik-Medium.ttf');
+}
+
+@font-face {
+  font-family: Rubik-Bold;
+  src: url('../css/fonts/Rubik/Rubik-Bold.ttf');
+}
+
+@font-face {
+  font-family: Rubik-ExtraBold;
+  src: url('../css/fonts/Rubik/Rubik-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: Rubik-SemiBold;
+  src: url('../css/fonts/Rubik/Rubik-SemiBold.ttf');
+}
+
+*{
+	box-sizing: content-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: Rubik-Regular;
+	background: #ebeeef !important;
+	justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+}
+
+/*---------------------------------------------*/
+h1,h2,h3,h4,h5,h6 {
+	margin: 0px;
+}
+
+.container-main{
+	/*width: 510px;*/
+	/*overflow: hidden;*/
+	/*flex-wrap: wrap;*/
+	/*display: inline-block;*/
+	/*margin-bottom: 50px;*/
+	width: 900px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	background: #fff;
+	border-radius: 15px;
+	margin-left: 20px;
+}
+
+.input-title{
+	font-family: Rubik-Bold;
+	font-size: 21px;
+	text-transform: uppercase;
+	margin-bottom: 15px;
+    text-align: center;
+}
+
+.input-field{
+  font-family: Rubik-Regular;
+  font-size: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  text-align: right;
+  color: #808080;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+.input-field input{
+    margin-left: 10px;
+}
+
+.button-continue{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  height: 50px;
+  background-color: #5f80aa;
+
+  font-family: Rubik-Regular;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.button-continue:hover{
+	background-color: #000;
+    cursor: pointer;
+}
+
+.logo{
+	width: 100%;
+    height: 120px;
+	background-image: url(../images/logo_energo.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+input{
+	margin-left: 15px;
+	margin-right: 15px;
+	width: 121px;
+	height: 32px;
+	padding-left: 13px;
+}
+
+.input-title-organization{
+	margin-top: 40px;
+}
+
+.row{
+	width: 350px;
+	display: inline-block;
+	border-left: 1px solid;
+	height: auto;
+}
+
+.userInfo{
+    background-color: #f7f7f7;
+    text-align: center;
+}
+
+.exit{
+    padding-left: 25px;
+}
+
+.break{
+	flex-basis: 100%
+}
+
+.form-select-type{
+	margin-right: 20px;
+	width: 256px;
+	margin-left: 37px;
+}
+
+#due-date{
+	margin-left: 10px;
+	display: inline-block;
+	width: 115px;
+}
+
+.hide-bg{
+	background-image: none !important;
+}
+
+.container{
+	/*width: 850px;*/
+	/*display: flex;*/
+	/*justify-content: center;*/
+	/*align-items: flex-start;*/
+	/*flex-wrap: wrap;*/
+	/*background: #fff;*/
+	/*border-radius: 15px;*/
+}
+
+.text{
+	color: #808080;
+}
+
+.container2{
+	width: 850px;
+	display: flex;
+	justify-content: center;
+	align-items: top;
+}
+
+.button-add-device{
+	margin-top: 20px;
+	width: 282px !important;
+	margin-left: 15px;
+	margin-right: 30px;
+}
+
+.col-4{
+	width: 85%;
+	height: 78%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	min-height: 200px;
+	max-height: 300px;
+}
+
+.model{
+}
+
+.device-number input{
+	width: 165px;
+}
+
+.device-date input{
+	width: 184px;
+}
+
+.active{
+	background-color: #c1cbd9 !important;
+	border-color: #c1cbd9 !important;
+	color: #000 !important;
+}
+
+.list-group-item{
+	cursor: pointer;
+}
+
+.custom-fields{
+	margin-bottom: 40px;
+}
+
+.custom-fields input{
+	width: 285px;
+	padding-left: 13px;
+}
+
+.input-deviceName{
+
+}
+
+.input-deviceNumber{
+	margin-left: 18px !important;
+}
+
+.input-diameter{
+	margin-left: 67px !important;
+}
+
+.input-impulseWeight{
+	margin-left: 31px !important;
+}
+
+.input-sensorNumber{
+	margin-left: 20px !important;
+}
+
+.input-length{
+	margin-left: 81px !important;
+}
+
+.input-sensorRange{
+	padding-left: 13px;
+	width: 271px !important;
+}
+
+.device-specs-container{
+	margin-top: 5px !important;
+}
+
+.btn-secondary{
+	background-color: #eee !important;
+	color: #000 !important;
+}
+
+.btn-secondary:hover{
+	background-color: #c1cbd9 !important;
+	color: #000 !important;
+}
+
+.device-arshin-date input{
+	width: 140px;
+}
+
+.validate-date{
+	background: #e1fbdb;
+}
+
+.invalidate-date{
+	background: #fbdedb;
+}
+
+.userInfoWrapper{
+	width: 100%;
+}
+
+
+

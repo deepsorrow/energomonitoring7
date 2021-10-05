@@ -1,0 +1,81 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/finish2.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-main">
+
+<div class="userInfoWrapper">
+    <div class="userInfo">
+  
+	<nav class="navbar navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+	<span class="currentMenuAction">Создание нового акта</span>
+	<span class="username"><i class="fa fa-user" aria-hidden="true"></i>Михайлов А.А.<span th:text="${name}"></span>
+  </nav>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-light p-4">
+      <div class="card-group">
+  <div class="card" id="create-new-document">
+    <img src="icons8-add-file-80.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h6 class="card-title">Создать новый акт</h5>
+    </div>
+  </div>
+  <div class="card" id="inspection-results">
+    <img src="icons8-rules-40.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h6 class="card-title">Результаты проверок</h5>
+    </div>
+  </div>
+  <div class="card" onclick="document.logoutForm.submit()">
+    <img src="icons8-exit-40.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h6 class="card-title">Выйти</h5>
+	  <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out"/>
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+	
+	<!--
+	<span class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Навигация
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Создать новый акт</a>
+    <a class="dropdown-item" href="#">Результаты проверок</a>
+    <a class="dropdown-item" href="#">Настройки</a>
+	<div class="dropdown-divider"></div>
+	<a class="dropdown-item" href="javascript: document.logoutForm.submit()" class="exit">Выйти <i class="fa fa-sign-out"></i></a>
+  </div>
+</span> -->  
+    </div>
+	</div>
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out"/>
+    </form>
+    <div class="logo"> </div>
+<form method="get" action="/" class="container-inputfields">
+<div class="input-title">Успешно завершено!</div>
+<button class="submit-button" type="submit">Вернуться на главную</button>
+</form>
+</div>
+<script src="../static/js/menu.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
