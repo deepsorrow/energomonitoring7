@@ -88,34 +88,34 @@ function addSpecsToNewDevice(deviceId){
         "<div class=\"input-field device-arshin-number\"><label>Номер свидетельства: </label>" +
         "<input type=\"text\"><button class=\"btn btn-secondary\" onclick=\"checkDeviceDueDate(this)\">Проверить</button></div>\n" +
         "<div class=\"input-field device-arshin-date\"><label>Поверка прибора действительна до:" +
-        "<select id='due-date' class=\"input-arshin-date hide-bg form-select\" onchange='getDueDateByMit(this)'></select></div>";
+        "<select id='due-date' class=\"input-arshin-date hide-bg form-select\"></select></div>";
 
     document.getElementById("deviceSpecsContainer").appendChild(htmlElement);
 }
 
-function getDueDateByMit(selectorElement){
-
-    selectorElement.innerHtml = ""; // clear options
-    let url = "http://192.168.6.19:8080/api/v1/getDueDateByMit?mitId=" + selectorElement.value;
-
-    let xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-            let response = JSON.parse(xmlHttp.responseText);
-            if(response['success']) {
-                selectorElement.classList.remove("invalidate-date");
-                selectorElement.classList.add("validate-date");
-            }
-            else {
-                selectorElement.classList.remove("validate-date");
-                selectorElement.classList.add("invalidate-date");
-            }
-            putDueDate(selectorElement, response["result"]);
-        }
-    }
-    xmlHttp.open("GET", url, true); // true for asynchronous
-    xmlHttp.send(null);
-}
+// function getDueDateByMit(selectorElement){
+//
+//     selectorElement.innerHtml = ""; // clear options
+//     let url = "http://62.231.175.113:8080/api/v1/getDueDateByMit?mitId=" + selectorElement.value;
+//
+//     let xmlHttp = new XMLHttpRequest();
+//     xmlHttp.onreadystatechange = function() {
+//         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+//             let response = JSON.parse(xmlHttp.responseText);
+//             if(response['success']) {
+//                 selectorElement.classList.remove("invalidate-date");
+//                 selectorElement.classList.add("validate-date");
+//             }
+//             else {
+//                 selectorElement.classList.remove("validate-date");
+//                 selectorElement.classList.add("invalidate-date");
+//             }
+//             putDueDate(selectorElement, response["result"]);
+//         }
+//     }
+//     xmlHttp.open("GET", url, true); // true for asynchronous
+//     xmlHttp.send(null);
+// }
 
 function updateCustomFields(selectorElement) {
     let deviceSpecs = selectorElement.parentElement.parentElement;

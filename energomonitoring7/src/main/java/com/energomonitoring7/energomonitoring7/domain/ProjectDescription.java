@@ -1,7 +1,9 @@
 package com.energomonitoring7.energomonitoring7.domain;
 
+import com.energomonitoring7.energomonitoring7.domain.files.ProjectFile;
+
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class ProjectDescription {
@@ -10,8 +12,8 @@ public class ProjectDescription {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int id;
 
-    @Column(columnDefinition="text")
-    private String photoBase64;
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<ProjectFile> files;
 
     @Column(columnDefinition="text")
     private String comment;
@@ -20,18 +22,10 @@ public class ProjectDescription {
     public ProjectDescription() {
     }
 
-    public ProjectDescription(String photoBase64, String comment, boolean isOk) {
-        this.photoBase64 = photoBase64;
+    public ProjectDescription(List<ProjectFile> files, String comment, boolean isOk) {
+        this.files = files;
         this.comment = comment;
         this.isOk = isOk;
-    }
-
-    public String getPhotoBase64() {
-        return photoBase64;
-    }
-
-    public void setPhotoBase64(String photoBase64) {
-        this.photoBase64 = photoBase64;
     }
 
     public String getComment() {

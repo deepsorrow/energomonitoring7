@@ -11,7 +11,10 @@ public class DeviceCounter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    int id;
+
+    @Version
+    private Integer version;
 
     private String deviceName;
     private String deviceNumber;

@@ -1,5 +1,7 @@
 package com.energomonitoring7.energomonitoring7.domain;
 
+import com.energomonitoring7.energomonitoring7.domain.files.FinalPhotoFile;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,13 +25,15 @@ public class ResultData {
     @OneToMany(cascade = CascadeType.ALL)
     public List<DeviceFlowTransducer> deviceFlowTransducers;
     @OneToMany(cascade = CascadeType.ALL)
-    public List<FlowTransducerCheckLengthResult> flowTransducerCheckLengthResults;
+    public List<CheckLengthResult> checkLengthResults;
     @OneToMany(cascade = CascadeType.ALL)
     public List<DeviceTemperatureTransducer> deviceTemperatureTransducers;
     @OneToMany(cascade = CascadeType.ALL)
     public List<DevicePressureTransducer> devicePressureTransducers;
     @OneToMany(cascade = CascadeType.ALL)
     public List<DeviceCounter> deviceCounters;
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<FinalPhotoFile> finalPhotos;
 
     public ResultData() {
     }

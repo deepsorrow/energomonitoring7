@@ -1,10 +1,6 @@
 package com.energomonitoring7.energomonitoring7.domain;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,14 +12,11 @@ public class MobileDataBundle {
 
     public int organizationId;
     public int clientId;
+    public int version;
 
     public int userId;
-    //@OneToOne
-    //@JoinColumn(name = "organizationId", referencedColumnName = "id", insertable = false, updatable = false)
     @Transient
     public OrganizationInfo organizationInfo;
-    //@OneToOne
-    //@JoinColumn(name = "clientId", referencedColumnName = "id", insertable = false, updatable = false)
     @Transient
     private ClientInfo clientInfo;
     @OneToOne(cascade = CascadeType.ALL)

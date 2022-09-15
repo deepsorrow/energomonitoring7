@@ -1,14 +1,15 @@
 package com.energomonitoring7.energomonitoring7.domain;
 
 import javax.persistence.*;
-import java.io.ByteArrayOutputStream;
-        import java.util.ArrayList;
 
 @Entity
-public class FlowTransducerCheckLengthResult {
+public class CheckLengthResult {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int id;
+
+    @Version
+    private Integer version;
 
     public int dataId;
 
@@ -21,7 +22,7 @@ public class FlowTransducerCheckLengthResult {
     public int deviceOrder;
     public int icon;
 
-    public FlowTransducerCheckLengthResult() {
+    public CheckLengthResult() {
     }
 
     public void resetId(){

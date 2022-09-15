@@ -57,15 +57,20 @@ public class MainController {
         Iterator<OrganizationInfo> servingOrganizationIterator = organizationsRepo.findAll().iterator();
         while(servingOrganizationIterator.hasNext()){
             OrganizationInfo newOrgInfo = servingOrganizationIterator.next();
-            newOrgInfo.servingObjects = List.of(newOrgInfo.servingObjectString.split(";"));
+            if(newOrgInfo.servingObjectString != null)
+                newOrgInfo.servingObjects = List.of(newOrgInfo.servingObjectString.split(";"));
+
             organizationInfos.add(newOrgInfo);
         }
         model.addAttribute("organizationsInfo", organizationInfos);
-
-        UserDetails currentUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("name", userRepo.getNameByLogin(currentUser.getUsername()));
+        model.addAttribute("name", getCurrentUsername());
 
         return "actOfEntry";
+    }
+
+    private String getCurrentUsername(){
+        UserDetails currentUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userRepo.getNameByLogin(currentUser.getUsername());
     }
 
     @PostMapping("/checkProject")
@@ -85,12 +90,12 @@ public class MainController {
         mobileDataBundle.organizationId = servingOrganization.id;
 
         model.addAttribute("mobileDataBundle", mobileDataBundle);
+        model.addAttribute("name", getCurrentUsername());
         return "checkProject";
     }
 
     @PostMapping("/checkVerificationDocuments")
     public void checkVerificationDocuments(@RequestBody ProjectDescription projectDescription, Model model){
-
         MobileDataBundle mobileDataBundle = (MobileDataBundle) model.getAttribute("mobileDataBundle");
         mobileDataBundle.setProject(projectDescription);
 
@@ -101,6 +106,7 @@ public class MainController {
     public String checkVerificationDocumentsGet(Model model){
         model.addAttribute("server_ip",   Settings.server_ip);
         model.addAttribute("server_port", Settings.server_port);
+        model.addAttribute("name", getCurrentUsername());
 
         return "checkVerificationDocuments";
     }
@@ -175,6 +181,7 @@ public class MainController {
             inspectorNames.add(userRepo.findById(resultData.otherInfo.userId).get().getName());
         }
 
+        model.addAttribute("name", getCurrentUsername());
         model.addAttribute("inspectorNames", inspectorNames);
         model.addAttribute("results", results);
 
@@ -198,7 +205,6 @@ public class MainController {
 
         UserDetails currentUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("name", userRepo.getNameByLogin(currentUser.getUsername()));
-        //model.addAttribute("clientName", resultData.otherInfo.cl)
         model.addAttribute("result", resultData);
         model.addAttribute("counterCharacteristics", counterCharacteristicts);
 

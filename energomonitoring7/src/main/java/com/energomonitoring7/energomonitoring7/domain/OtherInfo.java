@@ -15,6 +15,9 @@ public class OtherInfo {
     public int userId;
     public Date date;
 
+    @Version
+    private Integer version;
+
     public boolean lightIsOk;
     public boolean sanPinIsOk;
     @Column(columnDefinition="text")

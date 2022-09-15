@@ -1,31 +1,35 @@
 
 package com.energomonitoring7.energomonitoring7.domain.arshin;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated("jsonschema2pojo")
-public class ModelDetailed {
+public class Doc {
 
-    private ResponseHeader responseHeader;
-    private Response response;
+    @SerializedName("mi.mitnumber")
+    private String miMitnumber;
+    @SerializedName("valid_date")
+    private String validDate;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public ResponseHeader getResponseHeader() {
-        return responseHeader;
+    public String getMiMitnumber() {
+        return miMitnumber;
     }
 
-    public void setResponseHeader(ResponseHeader responseHeader) {
-        this.responseHeader = responseHeader;
+    public void setMiMitnumber(String miMitnumber) {
+        this.miMitnumber = miMitnumber;
     }
 
-    public Response getResponse() {
-        return response;
+    public String getValidDate() {
+        return validDate;
     }
 
-    public void setResponse(Response response) {
-        this.response = response;
+    public void setValidDate(String validDate) {
+        this.validDate = validDate;
     }
 
     public Map<String, Object> getAdditionalProperties() {

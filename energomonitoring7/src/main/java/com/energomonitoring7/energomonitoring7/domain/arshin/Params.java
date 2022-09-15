@@ -6,26 +6,35 @@ import java.util.Map;
 import javax.annotation.Generated;
 
 @Generated("jsonschema2pojo")
-public class ModelDetailed {
+public class Params {
 
-    private ResponseHeader responseHeader;
-    private Response response;
+    private String q;
+    private String fl;
+    private String fq;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public ResponseHeader getResponseHeader() {
-        return responseHeader;
+    public String getQ() {
+        return q;
     }
 
-    public void setResponseHeader(ResponseHeader responseHeader) {
-        this.responseHeader = responseHeader;
+    public void setQ(String q) {
+        this.q = q;
     }
 
-    public Response getResponse() {
-        return response;
+    public String getFl() {
+        return fl;
     }
 
-    public void setResponse(Response response) {
-        this.response = response;
+    public void setFl(String fl) {
+        this.fl = fl;
+    }
+
+    public String getFq() {
+        return fq;
+    }
+
+    public void setFq(String fq) {
+        this.fq = fq;
     }
 
     public Map<String, Object> getAdditionalProperties() {

@@ -1,62 +1,49 @@
 package com.energomonitoring7.energomonitoring7.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class DevicePressureTransducer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String deviceName;
-    private String deviceNumber;
-    private String sensorRange;
-    private int typeId;
+    public int id;
 
-    public String lastCheckDate;
-    public String installationPlace;
-    public String manufacturer;
-    public String values;
-    public String comment;
+    @Version
+    private Integer version;
+
+    @Convert(converter = FieldConverter.class)
+    public Field deviceName = new Field("");
+
+    @Convert(converter = FieldConverter.class)
+    public Field deviceNumber = new Field("");
+
+    @Convert(converter = FieldConverter.class)
+    public Field sensorRange = new Field("");
+    public int typeId;
+
+    @Convert(converter = FieldConverter.class)
+    public Field lastCheckDate = new Field("");
+
+    @Convert(converter = FieldConverter.class)
+    public Field installationPlace = new Field("");
+
+    @Convert(converter = FieldConverter.class)
+    public Field manufacturer = new Field("");
+
+    @Convert(converter = FieldConverter.class)
+    public Field values = new Field("");
+
+    @Convert(converter = FieldConverter.class)
+    public Field comment = new Field("");
 
     public DevicePressureTransducer() {
     }
 
     public DevicePressureTransducer(String deviceName, String deviceNumber, String sensorRange, int typeId) {
-        this.deviceName = deviceName;
-        this.deviceNumber = deviceNumber;
-        this.sensorRange = sensorRange;
+        this.deviceName.initialValue = deviceName;
+        this.deviceNumber.initialValue = deviceNumber;
+        this.sensorRange.initialValue = sensorRange;
         this.typeId = typeId;
-    }
-
-    public String getDeviceName() {
-        return deviceName;
-    }
-
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
-    }
-
-    public String getDeviceNumber() {
-        return deviceNumber;
-    }
-
-    public void setDeviceNumber(String deviceNumber) {
-        this.deviceNumber = deviceNumber;
-    }
-
-    public String getSensorRange() {
-        return sensorRange;
-    }
-
-    public void setSensorRange(String sensorRange) {
-        this.sensorRange = sensorRange;
-    }
-
-    public int getTypeId() {
-        return typeId;
     }
 
     public void setTypeId(int typeId) {

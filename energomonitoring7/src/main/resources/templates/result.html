@@ -76,9 +76,11 @@
         <div class="data_filled_from_site">
             <div>
                 <h3 class="part-title">Проверка данных предоставленных заказчиком</h3>
-                <div class="project-photo-container">
-                    <span class="label" style="position: absolute; left: 0; bottom: 0">Фото проекта: </span><img class="pop" th:src="${result.project.photoBase64}" id="projectPhoto">
-                </div>
+<!--                <div class="project-photo-container">-->
+<!--                    <span class="label" style="position: absolute; left: 0; bottom: 0">-->
+<!--                        Фото проекта: -->
+<!--                    </span><img class="pop" th:src="${result.project.photoBase64}" id="projectPhoto">-->
+<!--                </div>-->
             </div>
             <div>
                 <span class="label">Соответствие проекта нормативным требованиям: </span>
@@ -125,13 +127,13 @@
                 <div class="device-card-group">
                     <div class="device-card" th:each="deviceTemperatureCounter : ${result.deviceTemperatureCounters}">
                         <!--<div th:unless="deviceFlowTransducerStat.first" style="width: 20px"></div>-->
-                        <div class="device-card-field"><span class="label">Модель: </span><span th:text="${deviceTemperatureCounter.deviceName}"></span></div>
-                        <div class="device-card-field"><span class="label">Номер: </span><span th:text="${deviceTemperatureCounter.deviceNumber}"></span></div>
-                        <div class="device-card-field"><span class="label">Система измерения: </span><span th:text="${deviceTemperatureCounter.unitSystem}"></span></div>
-                        <div class="device-card-field"><span class="label">Модификация: </span><span th:text="${deviceTemperatureCounter.modification}"></span></div>
-                        <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${deviceTemperatureCounter.lastCheckDate}"></span></div>
-                        <div class="device-card-field"><span class="label">Межповерочный интервал: </span><span th:text="${deviceTemperatureCounter.interval}"></span></div>
-                        <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${deviceTemperatureCounter.comment}"></span></div>
+                        <div class="device-card-field"><span class="label">Модель: </span><span th:text="${deviceTemperatureCounter.deviceName.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Номер: </span><span th:text="${deviceTemperatureCounter.deviceNumber.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Система измерения: </span><span th:text="${deviceTemperatureCounter.unitSystem.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Модификация: </span><span th:text="${deviceTemperatureCounter.modification.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${deviceTemperatureCounter.lastCheckDate.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Межповерочный интервал: </span><span th:text="${deviceTemperatureCounter.interval.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${deviceTemperatureCounter.comment.value}"></span></div>
                     </div>
                 </div>
                 </div>
@@ -139,15 +141,15 @@
                 <div class="scrollable">
                 <div class="device-card-group">
                     <div class="device-card" th:each="deviceFlowTransducer : ${result.deviceFlowTransducers}">
-                        <div class="device-card-field"><span class="label">Модель: </span><span th:text="${deviceFlowTransducer.deviceName}"></span></div>
-                        <div class="device-card-field"><span class="label">Номер: </span><span th:text="${deviceFlowTransducer.deviceNumber}"></span></div>
-                        <div class="device-card-field"><span class="label">Место установки: </span><span th:text="${deviceFlowTransducer.installationPlace}"></span></div>
-                        <div class="device-card-field"><span class="label">Производитель: </span><span th:text="${deviceFlowTransducer.manufacturer}"></span></div>
-                        <div class="device-card-field"><span class="label">Диаметр: </span><span th:text="${deviceFlowTransducer.diameter}"></span></div>
-                        <div class="device-card-field"><span class="label">Вес импульса: </span><span th:text="${deviceFlowTransducer.impulseWeight}"></span></div>
-                        <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${deviceFlowTransducer.lastCheckDate}"></span></div>
+                        <div class="device-card-field"><span class="label">Модель: </span><span th:text="${deviceFlowTransducer.deviceName.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Номер: </span><span th:text="${deviceFlowTransducer.deviceNumber.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Место установки: </span><span th:text="${deviceFlowTransducer.installationPlace.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Производитель: </span><span th:text="${deviceFlowTransducer.manufacturer.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Диаметр: </span><span th:text="${deviceFlowTransducer.diameter.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Вес импульса: </span><span th:text="${deviceFlowTransducer.impulseWeight.value}"></span></div>
+                        <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${deviceFlowTransducer.lastCheckDate.value}"></span></div>
                         <div class="device-card-field"><span class="label">Показания на момент допуска: </span><span th:text="${deviceFlowTransducer.values}"></span></div>
-                        <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${deviceFlowTransducer.comment}"></span></div>
+                        <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${deviceFlowTransducer.comment.value}"></span></div>
                     </div>
                 </div>
                 </div>
@@ -155,13 +157,13 @@
                 <div class="scrollable">
                     <div class="device-card-group">
                         <div class="device-card" th:each="device : ${result.deviceTemperatureTransducers}">
-                            <div class="device-card-field"><span class="label">Модель: </span><span th:text="${device.deviceName}"></span></div>
-                            <div class="device-card-field"><span class="label">Номер: </span><span th:text="${device.deviceNumber}"></span></div>
-                            <div class="device-card-field"><span class="label">Место установки: </span><span th:text="${device.installationPlace}"></span></div>
-                            <div class="device-card-field"><span class="label">Длина: </span><span th:text="${device.length}"></span></div>
-                            <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${device.lastCheckDate}"></span></div>
+                            <div class="device-card-field"><span class="label">Модель: </span><span th:text="${device.deviceName.value}"></span></div>
+                            <div class="device-card-field"><span class="label">Номер: </span><span th:text="${device.deviceNumber.value}"></span></div>
+                            <div class="device-card-field"><span class="label">Место установки: </span><span th:text="${device.installationPlace.value}"></span></div>
+                            <div class="device-card-field"><span class="label">Длина: </span><span th:text="${device.length.value}"></span></div>
+                            <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${device.lastCheckDate.value}"></span></div>
                             <div class="device-card-field"><span class="label">Показания на момент допуска: </span><span th:text="${device.values}"></span></div>
-                            <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${device.comment}"></span></div>
+                            <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${device.comment.value}"></span></div>
                         </div>
                     </div>
                 </div>
@@ -169,14 +171,14 @@
                 <div class="scrollable">
                     <div class="device-card-group">
                         <div class="device-card" th:each="device : ${result.devicePressureTransducers}">
-                            <div class="device-card-field"><span class="label">Модель: </span><span th:text="${device.deviceName}"></span></div>
-                            <div class="device-card-field"><span class="label">Номер: </span><span th:text="${device.deviceNumber}"></span></div>
-                            <div class="device-card-field"><span class="label">Место установки: </span><span th:text="${device.installationPlace}"></span></div>
-                            <div class="device-card-field"><span class="label">Производитель: </span><span th:text="${device.manufacturer}"></span></div>
-                            <div class="device-card-field"><span class="label">Диапазон датчика: </span><span th:text="${device.sensorRange}"></span></div>
-                            <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${device.lastCheckDate}"></span></div>
+                            <div class="device-card-field"><span class="label">Модель: </span><span th:text="${device.deviceName.value}"></span></div>
+                            <div class="device-card-field"><span class="label">Номер: </span><span th:text="${device.deviceNumber.value}"></span></div>
+                            <div class="device-card-field"><span class="label">Место установки: </span><span th:text="${device.installationPlace.value}"></span></div>
+                            <div class="device-card-field"><span class="label">Производитель: </span><span th:text="${device.manufacturer.value}"></span></div>
+                            <div class="device-card-field"><span class="label">Диапазон датчика: </span><span th:text="${device.sensorRange.value}"></span></div>
+                            <div class="device-card-field"><span class="label">Дата последней поверки: </span><span th:text="${device.lastCheckDate.value}"></span></div>
                             <div class="device-card-field"><span class="label">Показания на момент допуска: </span><span th:text="${device.values}"></span></div>
-                            <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${device.comment}"></span></div>
+                            <div class="device-card-field"><span class="label">Примечания: </span><span th:text="${device.comment.value}"></span></div>
                         </div>
                     </div>
                 </div>
@@ -188,15 +190,15 @@
                             <div class="device-card-field"><span class="label">Номер: </span><span th:text="${device.deviceNumber}"></span></div>
                             <div class="device-card-field"><span class="label">Диаметр: </span><span th:text="${device.diameter}"></span></div>
                             <div class="device-card-field"><span class="label">Вес импульса: </span><span th:text="${device.impulseWeight}"></span></div>
-                            <div class="device-card-field"><span class="label">Qo Гкал: </span><span th:text="${device.parameters.get(0).getValue()}"></span></div>
-                            <div class="device-card-field"><span class="label">Q гвс: </span><span th:text="${device.parameters.get(1).getValue()}"></span></div>
-                            <div class="device-card-field"><span class="label">G1 т/час: </span><span th:text="${device.parameters.get(2).getValue()}"></span></div>
-                            <div class="device-card-field"><span class="label">G2 т/час: </span><span th:text="${device.parameters.get(3).getValue()}"></span></div>
-                            <div class="device-card-field"><span class="label">G3 т/час: </span><span th:text="${device.parameters.get(4).getValue()}"></span></div>
-                            <div class="device-card-field"><span class="label">T1 C: </span><span th:text="${device.parameters.get(5).getValue()}"></span></div>
-                            <div class="device-card-field"><span class="label">T2 C: </span><span th:text="${device.parameters.get(6).getValue()}"></span></div>
-                            <div class="device-card-field"><span class="label">P1: </span><span th:text="${device.parameters.get(7).getValue()}"></span></div>
-                            <div class="device-card-field"><span class="label">P2: </span><span th:text="${device.parameters.get(8).getValue()}"></span></div>
+<!--                            <div class="device-card-field"><span class="label">Qo Гкал: </span><span th:text="${device.parameters.get(0).getValue()}"></span></div>-->
+<!--                            <div class="device-card-field"><span class="label">Q гвс: </span><span th:text="${device.parameters.get(1).getValue()}"></span></div>-->
+<!--                            <div class="device-card-field"><span class="label">G1 т/час: </span><span th:text="${device.parameters.get(2).getValue()}"></span></div>-->
+<!--                            <div class="device-card-field"><span class="label">G2 т/час: </span><span th:text="${device.parameters.get(3).getValue()}"></span></div>-->
+<!--                            <div class="device-card-field"><span class="label">G3 т/час: </span><span th:text="${device.parameters.get(4).getValue()}"></span></div>-->
+<!--                            <div class="device-card-field"><span class="label">T1 C: </span><span th:text="${device.parameters.get(5).getValue()}"></span></div>-->
+<!--                            <div class="device-card-field"><span class="label">T2 C: </span><span th:text="${device.parameters.get(6).getValue()}"></span></div>-->
+<!--                            <div class="device-card-field"><span class="label">P1: </span><span th:text="${device.parameters.get(7).getValue()}"></span></div>-->
+<!--                            <div class="device-card-field"><span class="label">P2: </span><span th:text="${device.parameters.get(8).getValue()}"></span></div>-->
                         </div>
                     </div>
                 </div>
@@ -205,7 +207,7 @@
 
             <h3 class="part-title">Проверка длин прямолинейных участков</h3>
             <div class="scrollable">
-                <div class="device-card-group" th:each="lengthResult : ${result.flowTransducerCheckLengthResults}">
+                <div class="device-card-group" th:each="lengthResult : ${result.checkLengthResults}">
                     <div class="device-card" >
                         <div class="device-card-field"><span class="label">Длина до расходомера: </span><span th:text="${lengthResult.lengthBefore}"></span></div>
                         <div class="device-card-field"><span class="label">Длина после расходомера: </span><span th:text="${lengthResult.lengthAfter}"></span></div>
